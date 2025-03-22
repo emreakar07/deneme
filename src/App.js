@@ -3,7 +3,8 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import UsdtTransfer from './components/UsdtTransfer';
 import './App.css';
 
-const manifestUrl = 'https://your-app.com/tonconnect-manifest.json';
+// Manifest URL'i process.env üzerinden alıyoruz veya default değer kullanıyoruz
+const manifestUrl = process.env.REACT_APP_MANIFEST_URL || 'https://ton-usdt-transfer.vercel.app/tonconnect-manifest.json';
 
 function App() {
   return (
