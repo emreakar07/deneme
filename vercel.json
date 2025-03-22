@@ -22,8 +22,8 @@
       "dest": "/favicon.ico"
     },
     {
-      "src": "/manifest.json",
-      "dest": "/manifest.json"
+      "src": "/tonconnect-manifest.json",
+      "dest": "/tonconnect-manifest.json"
     },
     {
       "src": "/(.*)",
