@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { TonConnectButton, TonConnectUI } from '@tonconnect/ui-react';
 import { Address, toNano, beginCell } from 'ton-core';
-import { TonClient } from 'ton';
 
 // USDT contract addresses
 const USDT_CONTRACT_ADDRESS = {
