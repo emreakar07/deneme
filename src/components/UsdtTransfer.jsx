@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TonConnectButton, useTonConnect } from '@tonconnect/ui-react';
+import { TonConnectButton, TonConnectUI } from '@tonconnect/ui-react';
 import { Address, toNano, beginCell } from 'ton-core';
 import { TonClient } from 'ton';
 
@@ -16,7 +16,7 @@ const OP_CODES = {
 };
 
 const UsdtTransfer = () => {
-  const { connected, account, network } = useTonConnect();
+  const tonConnectUI = TonConnectUI.useTonConnectUI();
   const [recipientAddress, setRecipientAddress] = useState('');
   const [amount, setAmount] = useState('');
   const [loading, setLoading] = useState(false);
@@ -27,7 +27,7 @@ const UsdtTransfer = () => {
       setLoading(true);
       setError('');
 
-      if (!connected) {
+      if (!tonConnectUI.connected) {
         throw new Error('Please connect your wallet first');
       }
 
@@ -52,18 +52,18 @@ const UsdtTransfer = () => {
         .storeUint(0, 64)
         .storeCoins(amountInNano)
         .storeAddress(recipient)
-        .storeAddress(account.address) // response destination
+        .storeAddress(tonConnectUI.account.address) // response destination
         .storeUint(0, 1) // no custom payload
         .endCell();
 
       // Get current network
-      const currentNetwork = network === 'mainnet' ? 'mainnet' : 'testnet';
+      const currentNetwork = tonConnectUI.network === 'mainnet' ? 'mainnet' : 'testnet';
       const contractAddress = Address.parse(USDT_CONTRACT_ADDRESS[currentNetwork]);
 
       // Here you would implement the actual USDT transfer logic
       // This is a placeholder for the actual implementation
       console.log('Transferring USDT:', {
-        from: account.address,
+        from: tonConnectUI.account.address,
         to: recipientAddress,
         amount: amountInNano.toString(),
         contract: contractAddress.toString(),
@@ -90,7 +90,7 @@ const UsdtTransfer = () => {
         <TonConnectButton />
       </div>
 
-      {connected && (
+      {tonConnectUI.connected && (
         <div className="transfer-form">
           <div className="form-group">
             <label>Recipient Address:</label>
