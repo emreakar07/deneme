@@ -3,7 +3,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import UsdtTransfer from './components/UsdtTransfer';
 import './App.css';
 
-// Doğru manifest URL'i
+// TonConnect manifest URL
 const manifestUrl = 'https://deneme-tan-psi.vercel.app/tonconnect-manifest.json';
 
 function App() {
