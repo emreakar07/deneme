@@ -10,24 +10,29 @@
     }
   ],
   "routes": [
-    {
-      "src": "/static/(.*)",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
+    { 
+      "src": "/tonconnect-manifest.json", 
+      "headers": { 
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
       },
-      "continue": true
+      "dest": "/tonconnect-manifest.json" 
     },
-    {
-      "src": "/favicon.ico",
-      "dest": "/favicon.ico"
+    { 
+      "src": "/manifest.json", 
+      "headers": { 
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
+      },
+      "dest": "/manifest.json" 
     },
-    {
-      "src": "/tonconnect-manifest.json",
-      "dest": "/tonconnect-manifest.json"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+    { "handle": "filesystem" },
+    { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/favicon.ico", "dest": "/favicon.ico" },
+    { "src": "/logo192.png", "dest": "/logo192.png" },
+    { "src": "/logo512.png", "dest": "/logo512.png" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 } 
